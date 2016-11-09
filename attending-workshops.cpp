@@ -18,6 +18,7 @@ Available_Workshops* initialize(int *start_time, int *duration, int n) {
     }
 	return aw;
 }
+
 int CalculateMaxWorkshops(Available_Workshops* data) {
 	sort(data->begin(),data->end(), [](const p &a, const p &b) { return a.second < b.second; });
 	int f = 0, res = 0;
