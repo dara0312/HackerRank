@@ -1,16 +1,15 @@
 import Control.Monad
 import Data.List
 
-main :: IO ()
-main = readLn >>= flip replicateM_ testCase
-
-testCase :: IO ()
-testCase = do
-    n <- readLn
-    xs <- replicateM n $ fmap (head . map read . words) getLine :: IO [Int]
-    if xs == nub xs
+run = do
+    t <- readLn
+    s <- replicateM t $ fmap (head . map read . words) getLine :: IO [Int]
+    if s == nub s
         then putStrLn "YES"
         else putStrLn "NO"
+
+main = readLn >>= flip replicateM_ run
+
 
 ///
 
