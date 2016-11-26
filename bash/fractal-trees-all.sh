@@ -21,26 +21,26 @@ print_board() {
 }
 
 iterate() {
-    local remain="$1"
+    local n="$1"
     local size="$2"
-    local start_row="$3"
-    local start_col="$4"
+    local row="$3"
+    local col="$4"
 
-    if [[ "$remain" -eq 0 ]]; then
+    if [[ "$n" -eq 0 ]]; then
         return
     fi
 
-    for (( i = start_row; i > start_row - size; i-- )); do
-        board[$i,$start_col]="1"
+    for (( i = row; i > row - size; i-- )); do
+        board[$i,$col]="1"
     done
 
-    for (( i = start_row - size; i > start_row - size * 2; i-- )); do
-        board[$i,$((start_col - (start_row - size - i + 1)))]="1"
-        board[$i,$((start_col + (start_row - size - i + 1)))]="1"
+    for (( i = row - size; i > row - size * 2; i-- )); do
+        board[$i,$((col - (row - size - i + 1)))]="1"
+        board[$i,$((col + (row - size - i + 1)))]="1"
     done
 
-    iterate $((remain - 1)) $((size / 2)) $((start_row - size * 2)) $((start_col - size))
-    iterate $((remain - 1)) $((size / 2)) $((start_row - size * 2)) $((start_col + size))
+    iterate $((n - 1)) $((size / 2)) $((row - size * 2)) $((col - size))
+    iterate $((n - 1)) $((size / 2)) $((row - size * 2)) $((col + size))
 }
 
 main() {
